@@ -5,27 +5,32 @@ import { useEffect, useState, createContext } from "react";
 const Contex = createContext(null)
 
 const Provider = ({ children }) => {
-    const [images, setImages] = useState([])
+    const [newFilm, setNewFilm] = useState([])
 
-    const getImage = async () => {
-        const res = await axios.get("https://imdb8.p.rapidapi.com/actors/get-all-images", {
-            params: {
-                nconst: 'nm0001667'
-            },
-            headers: {
-                'X-RapidAPI-Key': 'ef60c984cdmshe80975688cf5e30p1cc846jsnf15cca5d6094',
-                'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
-            }
-        })
-        setImages(res.data.resource.images)
+    const getNewFilm = async () => {
+        try {
+            const res = await axios.get(`https://imdb8.p.rapidapi.com/actors/get-all-news`, {
+                params: {
+                    nconst: 'nm0001667'
+                },
+                headers: {
+                    'X-RapidAPI-Key': 'd0f5ad54e1msh353ad61774af30dp122ea6jsnd9a4dde0cdf5',
+                    'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+                }
+            })
+
+            setNewFilm(res)
+        } catch (error) {
+
+        }
     }
 
     useEffect(() => {
-        getImage()
+        getNewFilm()
     }, [])
 
     return (
-        <Contex.Provider value={{ images }}>
+        <Contex.Provider value={{ newFilm }}>
             {children}
         </Contex.Provider>
     )
