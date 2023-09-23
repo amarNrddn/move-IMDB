@@ -6,8 +6,10 @@ const Contex = createContext(null)
 
 const Provider = ({ children }) => {
     const [newFilm, setNewFilm] = useState([])
+    // const [isLoading, setIsLoading] = useState(false)
 
     const getNewFilm = async () => {
+        // setIsLoading()
         try {
             const res = await axios.get(`https://imdb8.p.rapidapi.com/actors/get-all-news`, {
                 params: {

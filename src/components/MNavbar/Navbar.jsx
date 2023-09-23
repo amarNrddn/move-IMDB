@@ -15,7 +15,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='w-full flex justify-between bg-dark py-3 px-5'>
+    <nav className='w-full flex justify-between bg-dark py-3 px-5 fixed z-50 '>
       <div className="flex items-center">
         <h1 className='font-bold text-rose-500 mr-4 cursor-pointer text-[30px]'>MARZKYYMOVE</h1>
         <ul className='text-white flex gap-3 cursor-pointer'>
