@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="flex items-center">
         <h1 className='font-bold text-rose-500 mr-4 cursor-pointer text-[30px]'>MARZKYYMOVE</h1>
         <ul className='text-white flex gap-3 cursor-pointer'>
-          <li onClick={() => navigate('/')} >New</li>
+          <li onClick={() => navigate('/')} >Trending</li>
           <li onClick={() => navigate('/tvShow')}>Tv Show</li>
           <li>Move</li>
           <li>Genre</li>

@@ -1,38 +1,38 @@
 import axios from "axios";
 import React from "react";
 import { useEffect, useState, createContext } from "react";
-
+import { config } from "../config";
 const Contex = createContext(null)
 
 const Provider = ({ children }) => {
-    const [newFilm, setNewFilm] = useState([])
-    // const [isLoading, setIsLoading] = useState(false)
+    const [trending, setTrending] = useState([])
+    const [image, setImage] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
-    const getNewFilm = async () => {
-        // setIsLoading()
+    const getTrending = async () => {
         try {
-            const res = await axios.get(`https://imdb8.p.rapidapi.com/actors/get-all-news`, {
-                params: {
-                    nconst: 'nm0001667'
-                },
+            setIsLoading(true)
+            const res = await axios.get(`${config.api_base_url}/trending/all/day`, {
                 headers: {
-                    'X-RapidAPI-Key': 'd0f5ad54e1msh353ad61774af30dp122ea6jsnd9a4dde0cdf5',
-                    'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
+                    accept: 'application/json',
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZGE4NTE2MThkNmVkNDg2ZTg2YWY4NGZjNjU5MTk0MCIsInN1YiI6IjY1MGYwZGI0ZThkMGI0MDBjYTg1YTI5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.65natjhrPcktFWtX6o7M6psQCKY6S6MGRaqKaBx4QO4'
                 }
             })
-
-            setNewFilm(res)
+            setTrending(res.data.results)
+            console.log(res.data.results)
+            setIsLoading(false)
         } catch (error) {
-
+            console.log(error)
         }
     }
 
+
     useEffect(() => {
-        getNewFilm()
+        getTrending()
     }, [])
 
     return (
-        <Contex.Provider value={{ newFilm }}>
+        <Contex.Provider value={{ trending, isLoading, image }}>
             {children}
         </Contex.Provider>
     )
