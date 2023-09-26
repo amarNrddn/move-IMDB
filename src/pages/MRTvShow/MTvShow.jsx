@@ -2,7 +2,9 @@ import React from 'react'
 
 const MTvShow = () => {
   return (
-    <div>Page tv MTvShow</div>
+    <div className='w-[100%] pt-[]'>
+      <h1 className='text-black'>sldksadj;lkl</h1>
+    </div>
   )
 }
 

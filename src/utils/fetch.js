@@ -6,10 +6,9 @@ const Contex = createContext(null)
 
 const Provider = ({ children }) => {
     const [trending, setTrending] = useState([])
-    const [image, setImage] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
-    const getTrending = async () => {
+    const getTrending = async() => {
         try {
             setIsLoading(true)
             const res = await axios.get(`${config.api_base_url}/trending/all/day`, {
@@ -20,6 +19,7 @@ const Provider = ({ children }) => {
             })
             setTrending(res.data.results)
             console.log(res.data.results)
+
             setIsLoading(false)
         } catch (error) {
             console.log(error)
@@ -32,7 +32,7 @@ const Provider = ({ children }) => {
     }, [])
 
     return (
-        <Contex.Provider value={{ trending, isLoading, image }}>
+        <Contex.Provider value={{ trending, isLoading}}>
             {children}
         </Contex.Provider>
     )
