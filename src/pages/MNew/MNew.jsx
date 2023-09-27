@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import MSkeleton from '../../components/MSkeleton/MSkeleton'
 import { config } from '../../config'
 import axios from 'axios'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const MNew = () => {
   const [trending, setTrending] = useState([])
@@ -34,8 +36,9 @@ const MNew = () => {
   return (
     <div className='w-[100%] bg-dark text-white px-5 pt-[5rem] grid grid-cols-5 gap-2'>
       {trending.map((item, i) => {
-        const vote = item.vote_average + '%'
-        console.log(vote)
+        const vote = Math.floor(item.vote_average * 10)
+        const percentage = vote;
+
         return (
           <div key={i} className=" ">
             {isLoading ? (
@@ -49,11 +52,14 @@ const MNew = () => {
                     className=' '
                   />
                 </div>
-                {/* style={{width: vote}} */}
                 <div className="w-full mt-2 pl-2 text white">
-                  <p className="max-w-[180px] truncate  text-[11px] rounded-sm">{item.original_title}</p>
-                  <div className="h-[5px] w-[10%] bg-slate-50">
-                    <div className="h-[5px]  bg-slate-500 " style={{width: vote}} ></div>
+                  <div className="w-full flex">
+                    <p className="max-w-[180px] truncate  text-[11px] rounded-sm">{item.original_title}</p>
+                    <CircularProgressbar
+                      className='w-[40px] h-[40px]'
+                      value={percentage}
+                      text={`${percentage}%`}
+                    />
                   </div>
                   <p className="max-w-[150px] mb-1 mt-1 truncate text-[11px]  rounded-sm">{item.vote_average}</p>
                   <p className="max-w-[150px] mb-1  truncate rounded-sm text-[11px] ">{item.first_air_date}</p>
