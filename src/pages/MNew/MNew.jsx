@@ -52,17 +52,18 @@ const MNew = () => {
                     className=' '
                   />
                 </div>
-                <div className="w-full mt-2 pl-2 text white">
-                  <div className="w-full flex">
-                    <p className="max-w-[180px] truncate  text-[11px] rounded-sm">{item.original_title}</p>
+                <div className="w-full mt-2 px-2 text white flex ">
+                  <div className="w-full">
+                    <p className=" truncate text-[11px] max-w-[120px] rounded-sm">{item.original_title}</p>
+                  </div>
+                  <div className="w-[40px] h-[40px] absolute right-2 top-[80%] ">
                     <CircularProgressbar
-                      className='w-[40px] h-[40px]'
+                      className='w-[40px] text-[20px] font-bold h-[40px]'
                       value={percentage}
                       text={`${percentage}%`}
                     />
                   </div>
-                  <p className="max-w-[150px] mb-1 mt-1 truncate text-[11px]  rounded-sm">{item.vote_average}</p>
-                  <p className="max-w-[150px] mb-1  truncate rounded-sm text-[11px] ">{item.first_air_date}</p>
+                  {/* <p className="max-w-[150px] mb-1  truncate rounded-sm text-[11px] ">{item.first_air_date}</p> */}
                 </div>
               </div>
             )}
