@@ -18,7 +18,7 @@ const Provider = ({ children }) => {
                 }
             })
             setTrending(res.data.results)
-            console.log(res.data.results)
+            // console.log(res.data.results)
 
             setIsLoading(false)
         } catch (error) {

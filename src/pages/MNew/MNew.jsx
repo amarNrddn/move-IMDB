@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import MSkeleton from '../../components/MSkeleton/MSkeleton'
-import { config } from '../../config'
 import axios from 'axios'
-import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { config } from '../../config'
+import { CircularProgressbar } from 'react-circular-progressbar';
+import { AiOutlinePlayCircle } from 'react-icons/ai'
 
 const MNew = () => {
   const [trending, setTrending] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const [customColor, setCustomColor] = useState({
-    retUp : ''
+  const [customColor] = useState({
+    Up: '#16a34a',
+    midle: '#facc15',
+    low: '#f43f5e'
   })
 
   const getTrending = async () => {
@@ -24,7 +27,7 @@ const MNew = () => {
       setTrending(res.data.results)
       setTimeout(() => {
         setIsLoading(false)
-      }, 2000)
+      }, 0)
     } catch (error) {
       console.log(error)
     }
@@ -50,13 +53,16 @@ const MNew = () => {
             {isLoading ? (
               <MSkeleton />
             ) : (
-              <div className="border border-neutral-800 shadow max-w-[260px] pb-3 relative rounded-md cursor-pointer ">
-                <div className="w-full rounded-md  overflow-hidden">
+              <div className="border border-neutral-800 shadow max-w-[260px] pb-3 relative rounded-md cursor-pointer flex flex-col">
+                <div className="w-full rounded-md relative overflow-hidden">
                   <img
                     src={`${config.api_path_img}/${item.poster_path}`}
                     alt="error"
                     className='rounded-sm transition ease-in-out  delay-150  hover:opacity-25 hover:scale-110 '
                   />
+                  <div className="w-full h-auto bg-white ">
+                    <AiOutlinePlayCircle className='text-[60px] absolute left-0 top-0 right-0 bottom-0 m-auto opacity-0 hover:opacity-100' />
+                  </div>
                 </div>
                 <div className="w-full mt-2 px-2 text white flex ">
                   <div className="w-full">
@@ -69,7 +75,7 @@ const MNew = () => {
                       text={`${percentage}%`}
                       styles={{
                         path: {
-                          stroke: customColor,
+                          stroke: vote >= 80 ? customColor.Up : customColor.Up || vote <= 70 ? customColor.midle : 'customColor.midle' || vote <= 50 ? customColor.low : 'customColor.low',
                         },
                       }}
                     />
