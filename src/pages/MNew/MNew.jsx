@@ -4,7 +4,9 @@ import axios from 'axios'
 import 'react-circular-progressbar/dist/styles.css';
 import { config } from '../../config'
 import { CircularProgressbar } from 'react-circular-progressbar';
-import { AiOutlinePlayCircle } from 'react-icons/ai'
+import { AiOutlinePlayCircle } from 'react-icons/ai';
+import { Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const MNew = () => {
   const [trending, setTrending] = useState([])
@@ -53,15 +55,19 @@ const MNew = () => {
             {isLoading ? (
               <MSkeleton />
             ) : (
-              <div className="border border-neutral-800 shadow max-w-[260px] pb-3 relative rounded-md cursor-pointer flex flex-col">
-                <div className="w-full rounded-md relative overflow-hidden">
+              <div className="border border-neutral-800 shadow max-w-[260px] pb-3 relative rounded-md cursor-pointer flex flex-col overflow-hidden">
+                <div className="w-full rounded-md relative overflow-hidden transition ease-in-out  delay-150  hover:opacity-25 hover:scale-110 ">
                   <img
                     src={`${config.api_path_img}/${item.poster_path}`}
                     alt="error"
-                    className='rounded-sm transition ease-in-out  delay-150  hover:opacity-25 hover:scale-110 '
+                    className='rounded-sm '
                   />
-                  <div className="w-full h-auto bg-white ">
-                    <AiOutlinePlayCircle className='text-[60px] absolute left-0 top-0 right-0 bottom-0 m-auto opacity-0 hover:opacity-100' />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 ease-in-out  delay-150">
+                    <Link to={`/Detail/${i}`} >
+                      <AiOutlinePlayCircle
+                        className='text-[60px]'
+                      />
+                    </Link>
                   </div>
                 </div>
                 <div className="w-full mt-2 px-2 text white flex ">
