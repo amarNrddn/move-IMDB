@@ -2,8 +2,8 @@ import React from 'react'
 
 const Detail = () => {
   return (
-    <div className='text-black'>
-        <h1 className='text-black'>skljaakldjld</h1>
+    <div className='pt-[5rem]'>
+        <h1 className='text-black'>skljaakldjlasdasd</h1>
     </div>
   )
 }

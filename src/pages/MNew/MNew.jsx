@@ -1,43 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import MSkeleton from '../../components/MSkeleton/MSkeleton'
-import axios from 'axios'
 import 'react-circular-progressbar/dist/styles.css';
 import { config } from '../../config'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { AiOutlinePlayCircle } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { Contex } from '../../utils/fetch';
 
 const MNew = () => {
-  const [trending, setTrending] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  const {trending, isLoading} = useContext(Contex)
   const [customColor] = useState({
     Up: '#16a34a',
     midle: '#facc15',
     low: '#f43f5e'
   })
-
-  const getTrending = async () => {
-    try {
-      setIsLoading(true)
-      const res = await axios.get(`${config.api_base_url}/trending/all/day`, {
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZGE4NTE2MThkNmVkNDg2ZTg2YWY4NGZjNjU5MTk0MCIsInN1YiI6IjY1MGYwZGI0ZThkMGI0MDBjYTg1YTI5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.65natjhrPcktFWtX6o7M6psQCKY6S6MGRaqKaBx4QO4'
-        }
-      })
-      setTrending(res.data.results)
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 0)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getTrending()
-  }, [])
 
   return (
     <div className='w-[100%] bg-dark text-white px-5 pt-[5rem] grid grid-cols-5 gap-2'>
@@ -63,7 +41,7 @@ const MNew = () => {
                     className='rounded-sm '
                   />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 ease-in-out  delay-150">
-                    <Link to={`/Detail/${i}`} >
+                    <Link to={`/Detail`} >
                       <AiOutlinePlayCircle
                         className='text-[60px]'
                       />
