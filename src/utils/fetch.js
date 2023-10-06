@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState, createContext } from "react";
 import { config } from "../config";
+
 const Contex = createContext(null)
 
 const Provider = ({ children }) => {
@@ -21,18 +22,17 @@ const Provider = ({ children }) => {
             setTrending(res.data.results)
             setTimeout(() => {
                 setIsLoading(false)
-            }, 200)
+            }, 2000)
         } catch (error) {
             console.log(error)
         }
     }
-
     useEffect(() => {
         getTrending()
     }, [])
 
     return (
-        <Contex.Provider value={{ trending, isLoading }}>
+        <Contex.Provider value={{ trending, isLoading, }}>
             {children}
         </Contex.Provider>
     )

@@ -4,13 +4,12 @@ import 'react-circular-progressbar/dist/styles.css';
 import { config } from '../../config'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { AiOutlinePlayCircle } from 'react-icons/ai';
-import { Link, useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useContext } from 'react';
 import { Contex } from '../../utils/fetch';
 
 const MNew = () => {
-  const {trending, isLoading} = useContext(Contex)
+  const { trending, isLoading } = useContext(Contex)
   const [customColor] = useState({
     Up: '#16a34a',
     midle: '#facc15',
@@ -29,7 +28,7 @@ const MNew = () => {
         const formattedDate = date.toLocaleDateString(undefined, options);
 
         return (
-          <div key={i} className=" relative ">
+          <div key={item.id} className=" relative ">
             {isLoading ? (
               <MSkeleton />
             ) : (
@@ -41,7 +40,7 @@ const MNew = () => {
                     className='rounded-sm '
                   />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 ease-in-out  delay-150">
-                    <Link to={`/Detail`} >
+                    <Link to={`${item.id}`} >
                       <AiOutlinePlayCircle
                         className='text-[60px]'
                       />

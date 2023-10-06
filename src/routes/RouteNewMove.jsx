@@ -7,7 +7,7 @@ const RouteNewMove = () => {
   return (
     <Routes>
       <Route path='/' element={<MNew />} />
-      <Route path='/Detail' element={<Detail />} />
+      <Route path='/:id' element={<Detail />} />
     </Routes>
   )
 }
