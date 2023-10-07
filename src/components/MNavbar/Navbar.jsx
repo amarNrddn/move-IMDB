@@ -26,11 +26,12 @@ const Navbar = () => {
           </li>
           <li
             className='hover:text-slate-500 hover:ease-out duration-300'
-            onClick={() => navigate('/tvShow')}>
-            Tv Show
+            onClick={() => navigate('/tvSeries')}>
+            Tv Series
           </li>
           <li
             className='hover:text-slate-500 hover:ease-out duration-300'
+            onClick={() => navigate('/move')}
           >
             Move
           </li>
