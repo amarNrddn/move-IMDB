@@ -74,7 +74,7 @@ const Provider = ({ children }) => {
     }, [])
 
     return (
-        <Contex.Provider value={{ trending, tvSeries, move, isLoading, }}>
+        <Contex.Provider value={{ trending, tvSeries, move, setMove, setTvSeries, setTrending, isLoading, }}>
             {children}
         </Contex.Provider>
     )
