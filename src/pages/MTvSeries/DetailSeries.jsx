@@ -21,6 +21,8 @@ const DetailSeries = () => {
                 }
             })
 
+            const videos = await axios.get(`${config.api_base_url}/`)
+
             setDetailSeries(res.data)
             setGenres(res.data.genres)
             setSeasons(res.data.seasons)

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Disclosure } from '@headlessui/react'
-// import { ChevronUpIcon } from '@heroicons/react/20/solid'
 import { MdKeyboardArrowUp } from 'react-icons/md'
 import { useParams } from 'react-router-dom'
 import { config } from '../../config'
