@@ -9,6 +9,7 @@ const DetailMove = () => {
   const { id } = useParams()
   const [move, setDetailMove] = useState([])
   const [genres, setGenres] = useState([])
+  const [videos, setVideos] = useState([])
 
   const getDetailMove = async () => {
     try {
@@ -18,7 +19,16 @@ const DetailMove = () => {
           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZGE4NTE2MThkNmVkNDg2ZTg2YWY4NGZjNjU5MTk0MCIsInN1YiI6IjY1MGYwZGI0ZThkMGI0MDBjYTg1YTI5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.65natjhrPcktFWtX6o7M6psQCKY6S6MGRaqKaBx4QO4'
         }
       })
-      
+
+      const resVideos = await axios.get(`${config.api_base_url}/movie/${id}/videos?language=en-US`, {
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZGE4NTE2MThkNmVkNDg2ZTg2YWY4NGZjNjU5MTk0MCIsInN1YiI6IjY1MGYwZGI0ZThkMGI0MDBjYTg1YTI5NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.65natjhrPcktFWtX6o7M6psQCKY6S6MGRaqKaBx4QO4'
+        }
+      })
+
+      setVideos(resVideos)
+      console.log(resVideos)
       setDetailMove(res.data)
       setGenres(res.data.genres)
     } catch (error) {
